@@ -1,40 +1,34 @@
 <template>
-  <v-app>
-    <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+  <v-app :style="{ background: 'lightskyblue', 'overflow-y': auto }">
+    <v-app-bar dark app elevation="0" color="#00000000">
+      <v-app-bar-nav-icon @click="menuOpen"></v-app-bar-nav-icon>
     </v-app-bar>
     <v-main>
       <router-view />
     </v-main>
+    <v-dialog v-model="dialog" transition="fade-transition" fullscreen>
+      <v-card elevation="0" :style="{ background: 'lightskyblue' }">
+        <v-toolbar dark app elevation="0" color="#00000000">
+          <v-icon @click="dialog = false">mdi-close</v-icon>
+        </v-toolbar>
+        <v-content>
+          <v-row
+            no-gutters
+            justify="center"
+            class="my-15"
+            v-for="(menu, i) in appMenus"
+            :key="`menu-${i}`"
+          >
+            <h2
+              class="headline font-weight-bold white--text pointer"
+              @click="route(menu)"
+            >
+              {{ menu.title }}
+            </h2>
+          </v-row>
+        </v-content>
+      </v-card>
+    </v-dialog>
   </v-app>
 </template>
 
@@ -45,7 +39,40 @@ export default {
   components: {},
 
   data: () => ({
-    //
+    dialog: false,
+    appMenus: [
+      {
+        to: "Top",
+        title: "Top",
+      },
+      {
+        to: "About",
+        title: "About",
+      },
+    ],
   }),
+  methods: {
+    menuOpen() {
+      this.dialog = true;
+    },
+    route(menu) {
+      console.log(menu);
+      this.$router.push({ name: menu.to });
+      this.dialog = false;
+    },
+  },
 };
 </script>
+
+<style>
+html {
+  overflow-y: auto;
+}
+.routerLink {
+  text-decoration: none;
+}
+.pointer {
+  cursor: pointer;
+  cursor: hand;
+}
+</style>
