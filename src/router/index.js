@@ -3,12 +3,12 @@ import About from '@/pages/About'
 
 export const routes = [
   {
-    path: '/',
+    path: '/Portfolio/',
     name: 'Top',
     component: HelloWorld
   },
   {
-    path: '/about',
+    path: '/Portfolio/about',
     name: 'About',
     component: About
   }
