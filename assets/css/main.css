@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --border: #e2e8f0;
+}
+
+.dark {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --border: #334155;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply antialiased;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: "Inter", "Noto Sans JP", system-ui, sans-serif;
+  font-feature-settings: "palt";
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* スクロールバー装飾 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* セクション共通 */
+.section {
+  @apply py-20 px-6 md:px-10 lg:px-16;
+}
+
+.section-title {
+  @apply text-3xl md:text-4xl font-bold mb-4;
+}
+
+.section-subtitle {
+  @apply text-sm uppercase tracking-widest text-accent-500 font-medium mb-2;
+}
+
+/* カード */
+.card {
+  @apply rounded-2xl p-6 md:p-8 border transition-all duration-300;
+  background-color: var(--bg-secondary);
+  border-color: var(--border);
+}
+
+.card:hover {
+  @apply shadow-lg border-accent-400;
+  transform: translateY(-2px);
+}
+
+/* タグ */
+.tag {
+  @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium;
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.tag-accent {
+  @apply bg-accent-500/10 text-accent-600 dark:text-accent-300 border-accent-500/30;
+}
+
+/* グラデーション背景 */
+.gradient-hero {
+  background:
+    radial-gradient(circle at 15% 10%, rgba(59, 130, 246, 0.12), transparent 40%),
+    radial-gradient(circle at 85% 90%, rgba(37, 99, 235, 0.15), transparent 40%);
+}
+
+.dark .gradient-hero {
+  background:
+    radial-gradient(circle at 15% 10%, rgba(59, 130, 246, 0.2), transparent 40%),
+    radial-gradient(circle at 85% 90%, rgba(37, 99, 235, 0.25), transparent 40%);
+}
