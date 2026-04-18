@@ -29,16 +29,20 @@ onMounted(() => {
 
 <template>
   <header
-    class="sticky top-0 z-40 backdrop-blur-md transition-all duration-300"
+    class="sticky top-0 z-40 transition-all duration-500"
     :class="[
       scrolled
-        ? 'bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800'
+        ? 'backdrop-blur-xl bg-white/70 dark:bg-slate-950/70 border-b border-slate-200/60 dark:border-slate-800/60 shadow-[0_2px_20px_-10px_rgba(15,23,42,0.15)] dark:shadow-[0_2px_20px_-10px_rgba(0,0,0,0.6)]'
         : 'bg-transparent',
     ]"
   >
     <div class="max-w-6xl mx-auto px-6 md:px-10 lg:px-16 h-16 flex items-center justify-between">
-      <NuxtLink to="/" class="font-bold tracking-tight text-lg">
-        <span class="text-accent-500">Y.</span>Miyaji
+      <NuxtLink to="/" class="group flex items-center gap-2 font-bold tracking-tight text-lg" style="font-family: 'Playfair Display', serif;">
+        <span class="relative flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-royal text-white text-sm shadow-glow-sm group-hover:shadow-glow transition-shadow">
+          Y
+          <span class="absolute -inset-1 rounded-lg bg-gradient-royal opacity-40 blur-md -z-10" />
+        </span>
+        <span class="text-gradient">Miyaji</span>
       </NuxtLink>
 
       <nav class="hidden md:flex items-center gap-8">
@@ -46,16 +50,17 @@ onMounted(() => {
           v-for="item in navItems"
           :key="item.href"
           :href="item.href"
-          class="text-sm font-medium hover:text-accent-500 transition-colors"
+          class="relative text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors group"
         >
           {{ item.label }}
+          <span class="absolute left-0 -bottom-1 h-[2px] w-0 group-hover:w-full rounded-full bg-gradient-royal transition-all duration-300" />
         </a>
       </nav>
 
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2">
         <button
           type="button"
-          class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+          class="relative p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-slate-800/70 transition"
           :aria-label="colorMode.value === 'dark' ? 'ライトモードに切替' : 'ダークモードに切替'"
           @click="toggleTheme"
         >
@@ -97,7 +102,7 @@ onMounted(() => {
 
         <button
           type="button"
-          class="md:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+          class="md:hidden p-2 rounded-lg hover:bg-slate-100/70 dark:hover:bg-slate-800/70 transition"
           aria-label="メニュー"
           @click="mobileOpen = !mobileOpen"
         >
@@ -119,7 +124,7 @@ onMounted(() => {
     >
       <nav
         v-if="mobileOpen"
-        class="md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900"
+        class="md:hidden border-t border-slate-200/60 dark:border-slate-800/60 backdrop-blur-xl bg-white/85 dark:bg-slate-950/85"
       >
         <div class="px-6 py-4 flex flex-col gap-3">
           <a
