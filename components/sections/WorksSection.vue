@@ -39,19 +39,34 @@ const statusLabel = (status: string) => {
                 >
                   {{ statusLabel(work.status) }}
                 </span>
-                <a
-                  v-if="work.repoUrl"
-                  :href="work.repoUrl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-xs text-slate-500 hover:text-accent-500 transition inline-flex items-center gap-1"
-                  aria-label="GitHubで開く"
-                >
-                  GitHub
-                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M7 17L17 7M8 7h9v9" />
-                  </svg>
-                </a>
+                <div class="flex items-center gap-3">
+                  <a
+                    v-if="work.demoUrl"
+                    :href="work.demoUrl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-xs text-accent-600 dark:text-accent-300 hover:text-accent-500 transition inline-flex items-center gap-1 font-medium"
+                    aria-label="デモページを開く"
+                  >
+                    Demo
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M7 17L17 7M8 7h9v9" />
+                    </svg>
+                  </a>
+                  <a
+                    v-if="work.repoUrl"
+                    :href="work.repoUrl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-xs text-slate-500 hover:text-accent-500 transition inline-flex items-center gap-1"
+                    aria-label="GitHubで開く"
+                  >
+                    GitHub
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M7 17L17 7M8 7h9v9" />
+                    </svg>
+                  </a>
+                </div>
               </div>
 
               <h3 class="text-lg font-bold">{{ work.title }}</h3>

@@ -6,6 +6,7 @@ export interface Work {
   points: string[];
   tech: string[];
   repoUrl?: string;
+  demoUrl?: string;
   status: "public" | "private" | "archived";
   statusNote?: string;
   image?: string; // /images/works/xxx.png (public配下)
@@ -26,6 +27,7 @@ export const works: Work[] = [
     ],
     tech: ["Vue.js", "JavaScript", "Storybook", "ESLint"],
     repoUrl: "https://github.com/miyaji-yusei-fixer/seven",
+    demoUrl: "https://miyaji-yusei-fixer.github.io/seven/",
     status: "public",
   },
   {
