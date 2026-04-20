@@ -2,6 +2,9 @@
 import { ref } from "vue";
 import { works } from "~/data/works";
 
+const { baseUrl } = useRuntimeConfig().public;
+const resolveImage = (path: string) => `${baseUrl}${path.replace(/^\//, "")}`;
+
 const lightboxSrc = ref<string | null>(null);
 const lightboxAlt = ref("");
 
@@ -91,10 +94,10 @@ const statusLabel = (status: string) => {
             <div
               v-if="work.image"
               class="mt-4 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700 cursor-zoom-in"
-              @click="openLightbox(work.image!, `${work.title} のスクリーンショット`)"
+              @click="openLightbox(resolveImage(work.image!), `${work.title} のスクリーンショット`)"
             >
               <img
-                :src="work.image"
+                :src="resolveImage(work.image!)"
                 :alt="`${work.title} のスクリーンショット`"
                 class="w-full h-auto"
                 loading="lazy"

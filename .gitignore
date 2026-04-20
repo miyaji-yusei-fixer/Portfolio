@@ -23,6 +23,9 @@ yarn-error.log*
 .idea
 .vscode
 
+# Claude Code
+.claude/
+
 # Env / Local
 .env
 .env.*
