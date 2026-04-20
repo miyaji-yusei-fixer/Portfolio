@@ -1,5 +1,18 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import { works } from "~/data/works";
+
+const lightboxSrc = ref<string | null>(null);
+const lightboxAlt = ref("");
+
+const openLightbox = (src: string, alt: string) => {
+  lightboxSrc.value = src;
+  lightboxAlt.value = alt;
+};
+
+const closeLightbox = () => {
+  lightboxSrc.value = null;
+};
 
 const statusLabel = (status: string) => {
   switch (status) {
@@ -75,6 +88,19 @@ const statusLabel = (status: string) => {
               </p>
             </header>
 
+            <div
+              v-if="work.image"
+              class="mt-4 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700 cursor-zoom-in"
+              @click="openLightbox(work.image!, `${work.title} のスクリーンショット`)"
+            >
+              <img
+                :src="work.image"
+                :alt="`${work.title} のスクリーンショット`"
+                class="w-full h-auto"
+                loading="lazy"
+              />
+            </div>
+
             <p class="mt-4 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
               {{ work.description }}
             </p>
@@ -109,4 +135,32 @@ const statusLabel = (status: string) => {
       </div>
     </div>
   </section>
+
+  <Teleport to="body">
+    <Transition name="lightbox">
+      <div
+        v-if="lightboxSrc"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm cursor-zoom-out"
+        @click="closeLightbox"
+      >
+        <img
+          :src="lightboxSrc"
+          :alt="lightboxAlt"
+          class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-2xl"
+          @click.stop
+        />
+      </div>
+    </Transition>
+  </Teleport>
 </template>
+
+<style scoped>
+.lightbox-enter-active,
+.lightbox-leave-active {
+  transition: opacity 0.2s ease;
+}
+.lightbox-enter-from,
+.lightbox-leave-to {
+  opacity: 0;
+}
+</style>

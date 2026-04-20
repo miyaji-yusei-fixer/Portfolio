@@ -29,6 +29,7 @@ export const works: Work[] = [
     repoUrl: "https://github.com/miyaji-yusei-fixer/seven",
     demoUrl: "https://miyaji-yusei-fixer.github.io/seven/",
     status: "public",
+    image: "/images/works/seven.png",
   },
   {
     id: "amazonphoto-rating-tool",
@@ -44,7 +45,8 @@ export const works: Work[] = [
     ],
     tech: ["JavaScript", "Chrome Extension API"],
     status: "private",
-    statusNote: "ソースコードは非公開。概要・スクリーンショットでご紹介します。",
+    statusNote: "ソースコードは非公開です。",
+    image: "/images/works/amazonphoto-rating-tool.png",
   },
   {
     id: "youtube-tools",
